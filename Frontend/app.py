@@ -115,7 +115,7 @@ def main():
                 help="Select one or more filters to apply"
             )
             
-            process_button = st.button("🚀 Process Image", type="primary", use_container_width=True)
+            process_button = st.button("🚀 Process Image", type="primary", width='stretch')
     
     # Main content area
     if uploaded_file is None:
@@ -163,12 +163,12 @@ def main():
                     
                     with col1:
                         st.subheader("📷 Original Image")
-                        st.image(uploaded_file, use_container_width=True)
+                        st.image(uploaded_file, width="stretch")
                         show_image_info(original, "Original")
                     
                     with col2:
                         st.subheader("✨ Processed Image")
-                        st.image(processed_img, use_container_width=True)
+                        st.image(processed_img, width="stretch")
                         show_image_info(processed_img, "Processed")
                     
                     # Show what was applied
