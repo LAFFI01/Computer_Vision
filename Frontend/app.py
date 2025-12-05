@@ -2,6 +2,7 @@ import streamlit as st
 import cv2
 import numpy as np
 from streamlit.runtime.uploaded_file_manager import UploadedFile
+import io
 
 def apply_filters(img, filters):
     """Apply selected filters to the image."""
@@ -201,6 +202,18 @@ def main():
                         - **Edge Detection** finds boundaries where pixel intensity changes rapidly
                         - **Binary** images have only two values (0 or 255), useful for masks and segmentation
                         """)
+                    
+                    st.divider()
+                    # Add download button for the processed image
+                    is_success, buffer = cv2.imencode(".png", processed_img)
+                    if is_success:
+                        st.download_button(
+                            label="💾 Download Processed Image",
+                            data=buffer.tobytes(),
+                            file_name="processed_image.png",
+                            mime="image/png",
+                            type="primary"
+                        )
                 else:
                     st.error("Error processing the image. Please check the parameters.")
 
